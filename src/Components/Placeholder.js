@@ -20,17 +20,17 @@ export const ComponentName = (props) => {
         
     } = props;
     
-    var temp=[
-        {
-            author: 'you',
-            msg:'bruh'
-        },
-        {
-            author: 'not you',
-            msg:'bruh bruh'
-        }
-    ]
-
+    var temp={
+        lol: [
+        {author: 'you',msg:'bruh'},
+        {author: 'not you',msg:'bruh bruh'}
+    ],
+    lol2: [],lol3: [],lol4: [],lol5: [],lol6: [],lol7: [],lol8: [],lol9: [],lol10: [],lol11: [],lol12: [],lol13: [],
+    }
+    
+    const chats = Object.keys(temp)
+    const [activeTopic, changeActiveChat] = React.useState(chats[0])
+    
 
     return (
         <div style={{
@@ -56,27 +56,21 @@ export const ComponentName = (props) => {
                     }}>
                         <TextField id="standard-basic" label="Standard" />
 
-                        <ListItem alignItems="flex-start">
-                        `    <ListItemAvatar>
-                                <Avatar alt="Remy Sharp" src="https://1.bp.blogspot.com/-KGDRZgza04Y/XVHMVKQfo4I/AAAAAAAAPbo/zUGc9aU0bUwuwSavn1FWMPZzxLa3CxD_wCLcBGAs/s1600/yoba-logo.png" />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="Brunch this weekend?"
-                                secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        
-                                        color="textPrimary"
-                                    >
-                                    Ali Connors
-                                    </Typography>
-                                    {" — I'll be in your neighborhood doing errands this…"}
-                                </React.Fragment>
+                        <div style={{
+                            
+                        }}>  
+                        <List style={{height: '70vh',overflow: 'auto'}}>
+                            {
+                                chats.map(chat => (
+                                    <ListItem onClick={e => changeActiveChat(e.target.innerText)} key={chat} button>
+                                        <ListItemText primary={chat} />
+                                    </ListItem>
+                                ))
                             }
-                            />
-                        </ListItem>`
+                            
+                        </List>
+                    </div>
+                        
                     </Paper>
                 </Grid>
 
@@ -85,10 +79,12 @@ export const ComponentName = (props) => {
                        height: '80vh',
                        padding: '20px', 
                     }}>
-                        <div style={{height: '70vh'}}>
+                        <div style={{height: '70vh',
+                        overflow: 'auto'
+                    }}>
                         {
                         // temp.map(x => <div> {JSON.stringify(x)} </div>)
-                        temp.map((msg, i) => (
+                        temp[activeTopic].map((msg, i) => (
                             <div key={i}>
                                 {
                                 (msg.author !== 'you')?<Typography variant='body1' style={{textAlign: 'left'}}>{msg.author,msg.msg}</Typography>

@@ -1,0 +1,21 @@
+<ListItem alignItems="flex-start">
+                            <ListItemAvatar>
+                                <Avatar alt="Remy Sharp" src="https://1.bp.blogspot.com/-KGDRZgza04Y/XVHMVKQfo4I/AAAAAAAAPbo/zUGc9aU0bUwuwSavn1FWMPZzxLa3CxD_wCLcBGAs/s1600/yoba-logo.png" />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary="Brunch this weekend?"
+                                secondary={
+                                <React.Fragment>
+                                    <Typography
+                                        component="span"
+                                        variant="body2"
+                                        
+                                        color="textPrimary"
+                                    >
+                                    Ali Connors
+                                    </Typography>
+                                    {" — I'll be in your neighborhood doing errands this…"}
+                                </React.Fragment>
+                            }
+                            />
+                        </ListItem>
