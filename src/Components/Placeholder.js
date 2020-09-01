@@ -18,36 +18,50 @@ import Button from '@material-ui/core/Button';
 
 import './activeChat.css'
 
-class bruh{
 
-}
-
-class activeChat extends bruh{
-    render() { 
-        return <div className="activeChat"/>
-    }
-}
 
 export const ComponentName = (props) => {
+
+    
     const {
         
     } = props;
     
     var temp={
-        lol: [
+        Boys: [
         {author: 'you',msg:'bruh', img:'', aux:'',vid: ''},
         {author: 'not you',msg:'bruh bruh', img:'', aux:'',vid: ''},
         {author: 'not you',msg:'21st century dialogues be like', img:'', aux:'',vid: ''},
         {author: 'you',msg:'i stapled lobster to a ceiling', img:'', aux:'',vid: ''},
     ],
-    lol2: [
-        {author: 'you', msg:'', img:'https://www.meme-arsenal.com/memes/fd2730642a8e0736a9e0f9ce2d4fed26.jpg', aux:'',vid: ''}
-    ],lol3: [],lol4: [],lol5: [],lol6: [],lol7: [],lol8: [],lol9: [],lol10: [],lol11: [],lol12: [],lol13: [],
+    Girls: [
+        {author: 'you', msg:'', img:'https://www.meme-arsenal.com/memes/fd2730642a8e0736a9e0f9ce2d4fed26.jpg', aux:'',vid: ''},
+        {author: 'not you',msg:'nice', img:'', aux:'',vid: ''},
+    ],fater: [
+        {author: 'not you',msg:'ur adopted', img:'', aux:'',vid: ''},
+    ],wife: [
+        {author: 'you',msg:'ride wife', img:'', aux:'',vid: ''},
+        {author: 'not you',msg:'wife fight back', img:'', aux:'',vid: ''},
+        {author: 'you',msg:'K  I  L  L     W  I  F  E', img:'', aux:'',vid: ''},
+    ],lol5: [],lol6: [],lol7: [],lol8: [],lol9: [],lol10: [],lol11: [],lol12: [],lol13: [],
     }
+    
+
+    
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
+  
+    const handleListItemClick = (event, index) => {
+      setSelectedIndex(index);
+    };
     
     const chats = Object.keys(temp)
     const [activeTopic, changeActiveChat] = React.useState(chats[0])
 
+    const doTheJobPls = (event, index, activeTopic) =>{
+        handleListItemClick(event, index)
+        changeActiveChat(activeTopic)
+       
+    }
     
     // const useStyles = makeStyles(theme => ({
            
@@ -82,7 +96,7 @@ export const ComponentName = (props) => {
                         <List style={{height: '70vh',overflow: 'auto'}}>
                             {
                                 chats.map(chat => (
-                                    <ListItem onClick={e => changeActiveChat(e.target.innerText)} key={chat}  button>
+                                    <ListItem selected={selectedIndex === 0} onClick={event => doTheJobPls(event, 1 ,event.target.innerText)} key={chat}  button>
                                         <ListItemText primary={chat}  />
                                     </ListItem>
                                 ))
@@ -101,24 +115,29 @@ export const ComponentName = (props) => {
                     }}>
                         <div style={{height: '70vh',
                         overflow: 'auto'
+                        
                     }}>
                         {
                         // temp.map(x => <div> {JSON.stringify(x)} </div>)
                         temp[activeTopic].map((msg, i, j) => (
                             <div key={i}>
                                 {
-                                (msg.author !== 'you')?<Typography variant='body1' style={{textAlign: 'left', overflow:"hidden"}}>{msg.author,msg.msg}</Typography>
+                                (msg.author !== 'you')?<Typography variant='body1' style={{textAlign: 'left'}}>{'>> '}{msg.author,msg.msg}</Typography>
                                 :
-                                <div style={{background:'pink',textAlign: 'right', }}>{msg.author,msg.msg}</div>
-                                }    
-                            <div key={j} >
+                                <div style={{background:'pink',textAlign: 'right', }}>{msg.author,msg.msg}{' <<'}</div>
+                                }  
+                            <div> {(msg.img !== '')?  
+                            <div key={j} style={{alignContent: 'right'}}>
                                 {
-                                    (msg.author !== 'you')?<div><img src={msg.img} ></img></div>
+                                    (msg.author !== 'you')?<div><img src={msg.img} style={{maxHeight: '200px'}}></img></div>
                                     :
-                                    <div><img src={msg.img} alt={msg.alt}></img></div>   
+                                    <div><img src={msg.img} alt={msg.alt} style={{maxHeight: '200px', alignContent: 'right'}}></img></div>   
                                 }
-                            </div>    
-                                
+                            </div>
+                            :
+                            <div style={{maxHeight: '0px'}}></div>
+                            }   
+                            </div>   
                             </div>
                             
                         ))  
